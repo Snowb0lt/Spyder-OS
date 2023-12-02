@@ -162,3 +162,4 @@ MonoBehaviour:
   active: 1
   isMine: 0
   mineCount: 0
+  sweepManager: {fileID: 0}

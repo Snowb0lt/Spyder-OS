@@ -34,6 +34,10 @@ public class Tile : MonoBehaviour
     public bool isMine = false;
     public int mineCount = 0;
 
+
+    [Header("Manager Via Code")]
+    public SweeperManager sweepManager;
+
     private void Awake()
     {
         //This Should exist due to the RequireComponent Helper
@@ -74,11 +78,16 @@ public class Tile : MonoBehaviour
             {
                 //Uh Oh
                 spriteRenderer.sprite = mineHitTile;
+                SweeperManager._instance.GameOver();
             }
             else
             {
                 //tile is safe
                 spriteRenderer.sprite = clickedTiles[mineCount];
+            }
+            if (mineCount == 0)
+            {
+                SweeperManager._instance.ClickNeighbours(this);
             }
         }
     }

@@ -12,6 +12,15 @@ public class SweeperManager : MonoBehaviour
 
     private readonly float tileSize = 0.32f;
 
+    public static SweeperManager _instance;
+
+    private void Awake()
+    {
+        if (_instance == null || _instance != this)
+        {
+            _instance = this;
+        }
+    }
     private void Start()
     {
         CreateGameBoard(9, 9, 10); //Easy
@@ -43,6 +52,15 @@ public class SweeperManager : MonoBehaviour
                 tiles.Add(tile);
 
             }
+        }
+    }
+
+    public void ClickNeighbours(Tile tile)
+    {
+        int location = tiles.IndexOf(tile);
+        foreach (int pos in GetNeighbours(location))
+        {
+            tiles[pos].ClickedTile();
         }
     }
 
@@ -119,5 +137,10 @@ public class SweeperManager : MonoBehaviour
 
 
         return neighbours;
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("Release the Specimen");
     }
 }
