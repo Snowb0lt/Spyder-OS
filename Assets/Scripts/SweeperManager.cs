@@ -139,8 +139,10 @@ public class SweeperManager : MonoBehaviour
         return neighbours;
     }
 
+    [SerializeField] private GameObject releaseSign;
     public void GameOver()
     {
         Debug.Log("Release the Specimen");
+        releaseSign.SetActive(true);
     }
 }
