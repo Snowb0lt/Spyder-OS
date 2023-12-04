@@ -78,7 +78,7 @@ public class Tile : MonoBehaviour
             {
                 //Uh Oh
                 spriteRenderer.sprite = mineHitTile;
-                SweeperManager._instance.GameOver();
+                UIManager._instance.SpecimenReleased();
             }
             else
             {

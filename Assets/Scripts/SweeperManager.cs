@@ -23,12 +23,13 @@ public class SweeperManager : MonoBehaviour
     }
     private void Start()
     {
-        CreateGameBoard(9, 9, 10); //Easy
-        // CreateGameBoard(16, 16, 40); //Intermediate
-        //CreateGameBoard(30,16,99); //Expert
-        ResetGameState();
+
     }
-    private void CreateGameBoard(int width, int height, int numMines)
+    public void ChooseDifficulty()
+    {
+        
+    }
+    public void CreateGameBoard(int width, int height, int numMines)
     {
         //save the game parameters we're using.
         this.width = width;
@@ -64,7 +65,7 @@ public class SweeperManager : MonoBehaviour
         }
     }
 
-    private void ResetGameState()
+    public void ResetGameState()
     {
         //Randomly shuffle the tile posiiton to get indices for mine positions.
         int[] minePositions = (int[])Enumerable.Range(0, tiles.Count).OrderBy(x => Random.Range(0.0f, 1.0f)).ToArray(); 
