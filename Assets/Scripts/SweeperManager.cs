@@ -155,10 +155,8 @@ public class SweeperManager : MonoBehaviour
 
     [SerializeField] private Animation SpecimenAnim;
     [SerializeField] private GameObject Specimen;
-    private bool IsGameOver = false;
     public void GameOver()
     {
-        IsGameOver = true;
         //Screen Goes black
         foreach (GameObject obj in Clear)
         {
