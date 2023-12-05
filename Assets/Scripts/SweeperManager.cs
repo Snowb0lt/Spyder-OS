@@ -25,6 +25,17 @@ public class SweeperManager : MonoBehaviour
     {
 
     }
+    private void Update()
+    {
+        if (UIManager._instance.timeLeft <= 0)
+        {
+            GameOver();
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GameOver();
+        }
+    }
     public void ChooseDifficulty()
     {
         
@@ -140,10 +151,33 @@ public class SweeperManager : MonoBehaviour
         return neighbours;
     }
 
-    [SerializeField] private GameObject releaseSign;
+    [SerializeField] private List<GameObject> Clear;
+
+    [SerializeField] private Animation SpecimenAnim;
+    [SerializeField] private GameObject Specimen;
+    private bool IsGameOver = false;
     public void GameOver()
     {
-        Debug.Log("Release the Specimen");
-        releaseSign.SetActive(true);
+        IsGameOver = true;
+        //Screen Goes black
+        foreach (GameObject obj in Clear)
+        {
+            obj.SetActive(false);
+        }
+        Specimen.SetActive(true);
+        //Spider...
+        //Movement
+
+        
+
+        //Animations
+        SpecimenAnim.Play("taunt");
+
+
+        //Spider Screech
+        
+        //DeathSound
+
+        //GameOver Text
     }
 }

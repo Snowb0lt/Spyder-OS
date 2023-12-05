@@ -29,9 +29,12 @@ public class UIManager : MonoBehaviour
         }
         barImage.fillAmount = GetTimeLeft();
     }
-
     public void SpecimenReleased()
     {
+        if (UIReleaseElements.gameObject.activeSelf == true)
+        {
+            timeLeft -= 3;
+        }
         UIReleaseElements.gameObject.SetActive(true);
     }
     public void SpecimenContained()
@@ -43,11 +46,13 @@ public class UIManager : MonoBehaviour
     [Header("Time Management")]
     [SerializeField]private int maxTime;
 
-    private float timeLeft;
+    public float timeLeft;
 
     public float GetTimeLeft()
     {
         return timeLeft / maxTime;
     }
+
+
 }
 
