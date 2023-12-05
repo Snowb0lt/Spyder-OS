@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Build.Content;
 using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 
@@ -67,6 +68,10 @@ public class Tile : MonoBehaviour
                 }
 
             }
+            if (Input.GetMouseButton(0) && Input.GetMouseButtonDown(1))
+            {
+                SweeperManager._instance.ExpandIfFlagged(this);
+            }
         }
     }
     public void ClickedTile()
@@ -89,6 +94,15 @@ public class Tile : MonoBehaviour
             {
                 SweeperManager._instance.ClickNeighbours(this);
             }
+            SweeperManager._instance.CheckGameWon();
+        }
+    }
+    public void SetFlaggedIfMine()
+    {
+        if (isMine) 
+        { 
+            flagged = true;
+            spriteRenderer.sprite = flaggedTile;
         }
     }
 }

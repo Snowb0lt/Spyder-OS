@@ -21,24 +21,13 @@ public class SweeperManager : MonoBehaviour
             _instance = this;
         }
     }
-    private void Start()
-    {
 
-    }
     private void Update()
     {
         if (UIManager._instance.timeLeft <= 0)
         {
             GameOver();
         }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            GameOver();
-        }
-    }
-    public void ChooseDifficulty()
-    {
-        
     }
     public void CreateGameBoard(int width, int height, int numMines)
     {
@@ -155,6 +144,8 @@ public class SweeperManager : MonoBehaviour
 
     [SerializeField] private Animation SpecimenAnim;
     [SerializeField] private GameObject Specimen;
+
+    [SerializeField] private GameObject SpecimenHiss;
     public void GameOver()
     {
         //Screen Goes black
@@ -162,12 +153,12 @@ public class SweeperManager : MonoBehaviour
         {
             obj.SetActive(false);
         }
-        Specimen.SetActive(true);
+        SpecimenHiss.SetActive(true);
+        
         //Spider...
         //Movement
 
-        
-
+        Invoke("KillPlayer", 3);
         //Animations
         SpecimenAnim.Play("taunt");
 
@@ -177,5 +168,50 @@ public class SweeperManager : MonoBehaviour
         //DeathSound
 
         //GameOver Text
+    }
+    private void KillPlayer()
+    {
+        Specimen.SetActive(true);
+    }
+
+    public void CheckGameWon()
+    {
+        int count = 0;
+
+        foreach (Tile tile in tiles)
+        {
+            
+            if (tile.active && !tile.isMine)
+            {
+                count++;
+            }
+        }
+        if (count == 0)
+        {
+            Debug.Log("Winner! Move on");
+            foreach (Tile tile in tiles)
+            {
+                tile.active = false;
+                tile.SetFlaggedIfMine();
+            }
+            UIManager._instance.SpecimenContained();
+        }
+    }
+
+    public void ExpandIfFlagged(Tile tile)
+    {
+        int location = tiles.IndexOf(tile);
+        int flag_count = 0;
+        foreach (int pos in GetNeighbours(location)) 
+        {
+            if (tiles[pos].flagged)
+            {
+                flag_count++;
+            }
+            if (flag_count == tile.mineCount)
+            {
+                ClickNeighbours(tile);
+            }
+        }
     }
 }
