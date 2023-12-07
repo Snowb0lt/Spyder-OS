@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PuzzleDifficulty : MonoBehaviour
 {
+    public void RunTutorial()
+    {
+        SweeperManager._instance.RunTutorial(); //Runs A Tutorial Session
+        HideButtons();
+    }
     public void EasyDifficulty()
     {
         SweeperManager._instance.CreateGameBoard(9, 9, 10); //Easy

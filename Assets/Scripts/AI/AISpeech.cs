@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class AISpeech : MonoBehaviour
 {
     public float delay = 0.1f;
-    public string fullText;
+    private string fullText;
     private string currentText = "";
     [SerializeField]private TMP_Text speechText;
     private bool isTalking = false;
@@ -80,5 +80,7 @@ public class AISpeech : MonoBehaviour
     void EndDialogue()
     {
         Debug.Log("end of conversation");
+        fullText = "";
+        ShowText();
     }
 }

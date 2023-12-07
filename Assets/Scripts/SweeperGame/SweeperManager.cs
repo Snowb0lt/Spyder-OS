@@ -158,7 +158,7 @@ public class SweeperManager : MonoBehaviour
         //Spider...
         //Movement
 
-        Invoke("KillPlayer", 3);
+        Invoke("KillPlayer", 1.5f);
         //Animations
         SpecimenAnim.Play("taunt");
 
@@ -213,5 +213,11 @@ public class SweeperManager : MonoBehaviour
                 ClickNeighbours(tile);
             }
         }
+    }
+
+    //Run a tutorial for the game
+    public void RunTutorial()
+    {
+
     }
 }
