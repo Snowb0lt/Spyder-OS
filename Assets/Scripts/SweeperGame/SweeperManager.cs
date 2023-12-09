@@ -193,9 +193,15 @@ public class SweeperManager : MonoBehaviour
             {
                 tile.active = false;
                 tile.SetFlaggedIfMine();
+                Congrats();
             }
             UIManager._instance.SpecimenContained();
         }
+    }
+    [SerializeField] private GameObject congratsDialogue;
+    public void Congrats()
+    {
+        AISpeech._instance.StartDialogue(congratsDialogue.GetComponent<Dialogue>());
     }
 
     public void ExpandIfFlagged(Tile tile)

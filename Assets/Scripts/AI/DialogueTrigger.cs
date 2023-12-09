@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DialogueTrigger : MonoBehaviour
 {
@@ -17,5 +19,12 @@ public class DialogueTrigger : MonoBehaviour
     public void TriggerDialogue()
     {
         FindObjectOfType<AISpeech>().StartDialogue(dialogue);
+    }
+
+    //Perform Action at the End of Conversation
+    [SerializeField] private UnityEvent eventToBeTriggered;
+    public void TriggerEvent()
+    {
+        eventToBeTriggered?.Invoke();
     }
 }

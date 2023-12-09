@@ -14,6 +14,15 @@ public class AISpeech : MonoBehaviour
     [SerializeField]private TMP_Text speechText;
     private bool isTalking = false;
 
+    public static AISpeech _instance;
+    private void Awake()
+    {
+        if(_instance == null || _instance != this)
+        {
+            _instance = this;
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))
@@ -80,6 +89,7 @@ public class AISpeech : MonoBehaviour
     void EndDialogue()
     {
         Debug.Log("end of conversation");
+        DialogueTrigger._instance.TriggerEvent();
         fullText = "";
         ShowText();
     }

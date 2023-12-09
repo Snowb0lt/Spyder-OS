@@ -292,6 +292,9 @@ MonoBehaviour:
     - 
     - 
     - 
+  eventToBeTriggered:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &110564422
 GameObject:
   m_ObjectHideFlags: 0
@@ -1559,6 +1562,9 @@ MonoBehaviour:
     - 
     - 
     - 
+  eventToBeTriggered:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,6 +1836,70 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628411400}
   m_CullTransparentMesh: 1
+--- !u!1 &667777149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 667777150}
+  - component: {fileID: 667777151}
+  m_Layer: 0
+  m_Name: TutorialDialogue Pt. 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &667777150
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667777149}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1433103210}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &667777151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667777149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52fea91f88d7c08438c0ef655b446d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    name: Tutorial PT.1
+    sentences:
+    - 'See? That wasn''t so hard, was it? '
+    - Try this one. No mines, promise!
+  eventToBeTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1433103211}
+        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
+        m_MethodName: TeachMultiUnlock
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &690403325
 GameObject:
   m_ObjectHideFlags: 0
@@ -2562,7 +2632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: 
+    name: Tutorial PT.1
     sentences:
     - Wonderful! Learning is the best place to start!
     - So, the game I want to play has is a modified version of what the professor
@@ -2570,6 +2640,21 @@ MonoBehaviour:
     - 'You know how to play that, right? Of course you do!... But just in case you
       don''t, here. '
     - This is a tile! Left-click on it to see what it contains!
+  eventToBeTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1433103211}
+        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
+        m_MethodName: TeachTiles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &925594805
 GameObject:
   m_ObjectHideFlags: 0
@@ -2819,6 +2904,7 @@ MonoBehaviour:
   SpecimenAnim: {fileID: 391213492}
   Specimen: {fileID: 391213491}
   SpecimenHiss: {fileID: 1857550421}
+  congratsDialogue: {fileID: 0}
 --- !u!4 &983990181
 Transform:
   m_ObjectHideFlags: 0
@@ -3125,6 +3211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1433103210}
+  - component: {fileID: 1433103211}
   m_Layer: 0
   m_Name: Tutorial
   m_TagString: Untagged
@@ -3146,8 +3233,24 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 920815012}
+  - {fileID: 667777150}
   m_Father: {fileID: 1630179902}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1433103211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433103209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4165eab84891086419a5970186cfa5a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilePrefab: {fileID: 4756695580865135662, guid: 9a3a4a7378230a6449ae1314e738211b, type: 3}
+  gameHolder: {fileID: 250812713}
+  tutorialPt2: {fileID: 0}
 --- !u!1 &1460639349
 GameObject:
   m_ObjectHideFlags: 0
