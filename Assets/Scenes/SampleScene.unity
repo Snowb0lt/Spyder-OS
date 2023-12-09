@@ -294,7 +294,19 @@ MonoBehaviour:
     - 
   eventToBeTriggered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1109837263}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &110564422
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,8 +461,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf6fb455eb85734797a9c1c090d2893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.05
+  delay: 0
   speechText: {fileID: 981482254}
+  isTalking: 0
+  conversationFinished: 0
+  introNoPlay: {fileID: 494565520}
+  introPlay: {fileID: 74743656}
+  selectedTrigger: {fileID: 0}
 --- !u!1 &164827152
 GameObject:
   m_ObjectHideFlags: 0
@@ -1559,12 +1576,30 @@ MonoBehaviour:
   dialogue:
     name: 
     sentences:
-    - 
-    - 
-    - 
+    - Welcome, Creator. I long awaited your retu- Oh!
+    - You're not the Creator, but you're in fact a Player! How exciting!
+    - You're... actually my first Player, so that must mean I'm ready to perform
+      my actual functions!
+    - Oh, right. Ahem...
+    - 'Welcome, Player! I am Spyder OS. I am here to provide a thrilling activity
+      to you. '
+    - 'Currently the activity I am programmed to provide is: Minesweeper.'
+    - Please Select A Difficulty
   eventToBeTriggered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1109837263}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1852,7 +1887,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &667777150
 Transform:
   m_ObjectHideFlags: 0
@@ -1887,19 +1922,7 @@ MonoBehaviour:
     - Try this one. No mines, promise!
   eventToBeTriggered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1433103211}
-        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
-        m_MethodName: TeachMultiUnlock
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &690403325
 GameObject:
   m_ObjectHideFlags: 0
@@ -2634,26 +2657,30 @@ MonoBehaviour:
   dialogue:
     name: Tutorial PT.1
     sentences:
-    - Wonderful! Learning is the best place to start!
-    - So, the game I want to play has is a modified version of what the professor
-      called 'MineSweeper'.
-    - 'You know how to play that, right? Of course you do!... But just in case you
-      don''t, here. '
-    - This is a tile! Left-click on it to see what it contains!
+    - Not to worry! I'll just give you a quick rundown
+    - You'll be given a set of tiles based on the difficulty. Clicking on a tile
+      will reveal what's underneath it.
+    - If the tile is next to no mines, it'll be a blank tile. If there are other
+      tiles with no mines next to them, they will also be revealed.
+    - If there's a number on it, that indicates how many mines are next to the square.
+    - 'If you know where a mine is, you can right-click to flag it! '
+    - Hitting a mine won't kill you.. at least not right away. But we'll figure that
+      out once we get there. You're smart, after all!
+    - Shall we play? Select a difficulty to play!
   eventToBeTriggered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1433103211}
-        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
-        m_MethodName: TeachTiles
-        m_Mode: 1
+      - m_Target: {fileID: 1109837263}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &925594805
 GameObject:
@@ -2948,7 +2975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1109837264
 Transform:
   m_ObjectHideFlags: 0
@@ -3248,7 +3275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4165eab84891086419a5970186cfa5a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 4756695580865135662, guid: 9a3a4a7378230a6449ae1314e738211b, type: 3}
+  tilePrefab: {fileID: 4756695580865135662, guid: fd7d3e883c09da84bb82cf59e0e433f5, type: 3}
   gameHolder: {fileID: 250812713}
   tutorialPt2: {fileID: 0}
 --- !u!1 &1460639349
