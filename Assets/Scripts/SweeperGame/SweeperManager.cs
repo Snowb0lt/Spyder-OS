@@ -201,7 +201,7 @@ public class SweeperManager : MonoBehaviour
     [SerializeField] private GameObject congratsDialogue;
     public void Congrats()
     {
-        AISpeech._instance.StartDialogue(congratsDialogue.GetComponent<Dialogue>());
+        AISpeech._instance.StartDialogue(congratsDialogue.GetComponent<Dialogue>(), congratsDialogue.GetComponent<DialogueTrigger>());
     }
 
     public void ExpandIfFlagged(Tile tile)

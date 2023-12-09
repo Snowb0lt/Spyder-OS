@@ -7,22 +7,18 @@ using UnityEngine.Events;
 public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
-    public static DialogueTrigger _instance;
 
     private void Awake()
     {
-        if ( _instance == null || _instance != this)
-        {
-            _instance = this;
-        }
+
     }
     public void TriggerDialogue()
     {
-        FindObjectOfType<AISpeech>().StartDialogue(dialogue);
+        FindObjectOfType<AISpeech>().StartDialogue(dialogue, this);
     }
 
     //Perform Action at the End of Conversation
-    [SerializeField] private UnityEvent eventToBeTriggered;
+    public UnityEvent eventToBeTriggered;
     public void TriggerEvent()
     {
         eventToBeTriggered?.Invoke();

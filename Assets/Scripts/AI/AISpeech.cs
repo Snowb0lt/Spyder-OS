@@ -12,7 +12,7 @@ public class AISpeech : MonoBehaviour
     private string fullText;
     private string currentText = "";
     [SerializeField]private TMP_Text speechText;
-    private bool isTalking = false;
+    public bool isTalking = false;
 
     public static AISpeech _instance;
     private void Awake()
@@ -23,12 +23,9 @@ public class AISpeech : MonoBehaviour
         }
     }
 
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            DialogueTrigger._instance.TriggerDialogue();
-        }
         if (Input.GetMouseButtonDown(0))
         { 
             if (isTalking && isSentenceDone)
@@ -51,16 +48,36 @@ public class AISpeech : MonoBehaviour
         isSentenceDone = true;
     }
 
+    [Header("Conversation Standards")]
+    public bool conversationFinished;
+
     private Queue<string> sentences;
+    [Header("Welcome")]
+    [SerializeField] private GameObject introNoPlay, introPlay;
+    private int hasPlayedBefore;
+
 
     private void Start()
     {
         sentences = new Queue<string>();
+
+        if (hasPlayedBefore !=1)
+        {
+            StartDialogue(introNoPlay.GetComponent<DialogueTrigger>().dialogue, introNoPlay.GetComponent<DialogueTrigger>());
+            PlayerPrefs.SetFloat("hasPlayedBefore",1);
+        }
+        else
+        {
+            StartDialogue(introPlay.GetComponent<DialogueTrigger>().dialogue, introPlay.GetComponent<DialogueTrigger>());
+        }
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    [SerializeField] private DialogueTrigger selectedTrigger;
+
+    public void StartDialogue(Dialogue dialogue, DialogueTrigger trigger)
     {
         Debug.Log("Starting Conversation");
+        selectedTrigger = trigger;
         isTalking = true;
         sentences.Clear();
 
@@ -86,10 +103,10 @@ public class AISpeech : MonoBehaviour
 
     }
 
-    void EndDialogue()
+    public void EndDialogue()
     {
         Debug.Log("end of conversation");
-        DialogueTrigger._instance.TriggerEvent();
+        selectedTrigger.TriggerEvent();
         fullText = "";
         ShowText();
     }

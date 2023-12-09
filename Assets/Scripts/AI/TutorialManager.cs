@@ -17,7 +17,7 @@ public class TutorialManager : MonoBehaviour
         if (tilePrefab.GetComponent<Tile>().active == false)
         {
             Destroy(tilePrefab);
-            AISpeech._instance.StartDialogue(tutorialPt2.GetComponent<Dialogue>());
+            AISpeech._instance.StartDialogue(tutorialPt2.GetComponent<Dialogue>(),tutorialPt2.GetComponent<DialogueTrigger>());
         }
     }
 
