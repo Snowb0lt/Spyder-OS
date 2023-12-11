@@ -34,6 +34,10 @@ public class AISpeech : MonoBehaviour
                 DisplayNextSentence();
             }
         }
+        //if (Input.GetKeyDown(KeyCode.Backslash))
+        //{
+        //    PlayerPrefs.DeleteAll();
+        //}
     }
 
     private bool isSentenceDone;
@@ -60,11 +64,13 @@ public class AISpeech : MonoBehaviour
     private void Start()
     {
         sentences = new Queue<string>();
+        hasPlayedBefore = PlayerPrefs.GetInt("hasPlayedBefore");
 
         if (hasPlayedBefore !=1)
         {
             StartDialogue(introNoPlay.GetComponent<DialogueTrigger>().dialogue, introNoPlay.GetComponent<DialogueTrigger>());
-            PlayerPrefs.SetFloat("hasPlayedBefore",1);
+            hasPlayedBefore = 1;
+            PlayerPrefs.SetInt("hasPlayedBefore", 1);
         }
         else
         {
@@ -107,7 +113,8 @@ public class AISpeech : MonoBehaviour
     {
         Debug.Log("end of conversation");
         selectedTrigger.TriggerEvent();
-        fullText = "";
-        ShowText();
+        speechText.text = "";
+        //fullText = "";
+        //StartCoroutine(ShowText());
     }
 }
