@@ -143,13 +143,13 @@ public class SweeperManager : MonoBehaviour
 
         return neighbours;
     }
-
+    [Header("GameOver Items")]
     [SerializeField] private List<GameObject> Clear;
 
     [SerializeField] private Animation SpecimenAnim;
     [SerializeField] private GameObject Specimen;
 
-    [SerializeField] private GameObject SpecimenHiss;
+    [SerializeField] private GameObject SpecimenHiss, BackgroundNoise;
     public void GameOver()
     {
         //Screen Goes black
@@ -171,8 +171,6 @@ public class SweeperManager : MonoBehaviour
         
         //DeathSound
 
-        //GameOver Screen
-
     }
     private void KillPlayer()
     {
@@ -182,7 +180,7 @@ public class SweeperManager : MonoBehaviour
     private void CTBGameOver()
     {
         blackScreen.SetActive(true);
-        Invoke("SceneManager._instance.GameOver", 2);
+        Invoke("UIManager._instance.ShowGameOverScreen", 2);
     }
 
     public void CheckGameWon()

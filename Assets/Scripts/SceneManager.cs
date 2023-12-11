@@ -18,10 +18,6 @@ public class SceneManager : MonoBehaviour
     {
 
     }
-    public void GameOver()
-    {
-
-    }
     public void ToMainGame()
     {
 

@@ -62,5 +62,12 @@ public class UIManager : MonoBehaviour
         mineAmount.text = "= " + mineNumberCount;
     }
 
+
+    [SerializeField] private GameObject gameoverScreen;
+    //GameOver Screen
+    public void ShowGameOverScreen()
+    {
+        gameoverScreen.SetActive(true);
+    }
 }
 
