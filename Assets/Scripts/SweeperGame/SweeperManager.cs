@@ -6,7 +6,8 @@ using UnityEngine.Rendering;
 public class SweeperManager : MonoBehaviour
 {
     [SerializeField] private Transform tilePrefab, gameHolder;
-    private int width, height, numMines;
+    private int width, height;
+    public int numMines;
 
     private List<Tile> tiles = new();
 
@@ -35,6 +36,9 @@ public class SweeperManager : MonoBehaviour
         this.width = width;
         this.height = height;
         this.numMines = numMines;
+
+        UIManager._instance.NumberofMinesDisplay(numMines);
+        UIManager._instance.mineDisplay.SetActive(true);
 
         //create the array of tiles.
         for (int row = 0; row < height; row++)
@@ -167,11 +171,18 @@ public class SweeperManager : MonoBehaviour
         
         //DeathSound
 
-        //GameOver Text
+        //GameOver Screen
+
     }
     private void KillPlayer()
     {
         Specimen.SetActive(true);
+    }
+    [SerializeField] private GameObject blackScreen;
+    private void CTBGameOver()
+    {
+        blackScreen.SetActive(true);
+        Invoke("SceneManager._instance.GameOver", 2);
     }
 
     public void CheckGameWon()
@@ -193,6 +204,7 @@ public class SweeperManager : MonoBehaviour
             {
                 tile.active = false;
                 tile.SetFlaggedIfMine();
+                UIManager._instance.mineDisplay.SetActive(false);
                 Congrats();
             }
             UIManager._instance.SpecimenContained();

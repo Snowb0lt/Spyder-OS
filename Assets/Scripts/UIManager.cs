@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -53,6 +54,13 @@ public class UIManager : MonoBehaviour
         return timeLeft / maxTime;
     }
 
+    //Shows how many mines are left
+    public TMP_Text mineAmount;
+    public GameObject mineDisplay;
+    public void NumberofMinesDisplay(int mineNumberCount)
+    {
+        mineAmount.text = "= " + mineNumberCount;
+    }
 
 }
 
