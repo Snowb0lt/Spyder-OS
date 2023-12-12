@@ -28,12 +28,16 @@ public class AISpeech : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         { 
+            //Check if sentence is done (as to not skip accidentally)
             if (isTalking && isSentenceDone)
             {
                 isSentenceDone = false;
                 DisplayNextSentence();
             }
+
         }
+
+        //This is used to clear PlayerPrefs (Simulate starting the game up for the first time).
         //if (Input.GetKeyDown(KeyCode.Backslash))
         //{
         //    PlayerPrefs.DeleteAll();
@@ -78,8 +82,9 @@ public class AISpeech : MonoBehaviour
         }
     }
 
-    [SerializeField] private DialogueTrigger selectedTrigger;
 
+    //Starts the Dialogue, and checks to recieve what trigger
+    [SerializeField] private DialogueTrigger selectedTrigger;
     public void StartDialogue(Dialogue dialogue, DialogueTrigger trigger)
     {
         Debug.Log("Starting Conversation");
@@ -94,7 +99,7 @@ public class AISpeech : MonoBehaviour
 
         DisplayNextSentence();
     }
-
+    //Moves to the next piece in the Dialogue portion of the script and checks if there IS anything left
     public void DisplayNextSentence()
     {
         if (sentences.Count == 0)
@@ -109,6 +114,7 @@ public class AISpeech : MonoBehaviour
 
     }
 
+    //What happens at the end of the dialogue
     public void EndDialogue()
     {
         Debug.Log("end of conversation");

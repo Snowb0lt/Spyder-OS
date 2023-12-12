@@ -29,7 +29,28 @@ public class UIManager : MonoBehaviour
             timeLeft -= Time.deltaTime;
         }
         barImage.fillAmount = GetTimeLeft();
+        DisplayTime();
     }
+
+    [Header("Time/Clock")]
+    [SerializeField] private TMP_Text clockText;
+    private string SysClock;
+    private void DisplayTime()
+    {
+        
+        if (System.DateTime.Now.Minute < 10)
+        {
+            SysClock = System.DateTime.Now.Hour.ToString() + ":0" + System.DateTime.Now.Minute.ToString();
+        }
+        else
+        {
+            SysClock = System.DateTime.Now.Hour.ToString() + ":" + System.DateTime.Now.Minute.ToString();
+        }
+        
+        clockText.text = SysClock;
+
+    }
+
     public void SpecimenReleased()
     {
         if (UIReleaseElements.gameObject.activeSelf == true)
