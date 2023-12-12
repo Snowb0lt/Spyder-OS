@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
         barImage.fillAmount = GetTimeLeft();
         DisplayTime();
     }
-
+    //Controls the clock.
     [Header("Time/Clock")]
     [SerializeField] private TMP_Text clockText;
     private string SysClock;
@@ -50,7 +50,7 @@ public class UIManager : MonoBehaviour
         clockText.text = SysClock;
 
     }
-
+    //Shows that the specimen is released AS well as hides it when it is contained
     public void SpecimenReleased()
     {
         if (UIReleaseElements.gameObject.activeSelf == true)
@@ -69,7 +69,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]private int maxTime;
 
     public float timeLeft;
-
+    //Regulates the bar that drains when the specimen is on the way
     public float GetTimeLeft()
     {
         return timeLeft / maxTime;

@@ -26,6 +26,10 @@ public class MainMenuManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         PowerOffSound.Play();
+    }
+
+    public void Quit()
+    {
         Application.Quit();
     }
 }
