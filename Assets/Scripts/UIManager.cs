@@ -53,6 +53,10 @@ public class UIManager : MonoBehaviour
     //Shows that the specimen is released AS well as hides it when it is contained
     public void SpecimenReleased()
     {
+        if (!isSpecimenOut)
+        {
+            isSpecimenOut = true;
+        }
         if (UIReleaseElements.gameObject.activeSelf == true)
         {
             timeLeft -= 3;
@@ -61,6 +65,10 @@ public class UIManager : MonoBehaviour
     }
     public void SpecimenContained()
     {
+        if (isSpecimenOut)
+        {
+            isSpecimenOut = false;
+        }
         UIReleaseElements.gameObject.SetActive(false);
         timeLeft = maxTime;
     }
@@ -89,6 +97,15 @@ public class UIManager : MonoBehaviour
     public void ShowGameOverScreen()
     {
         gameoverScreen.SetActive(true);
+    }
+
+    //This shows if the specimen is released or not (for What congrats to pick)
+    public bool isSpecimenOut = false;
+
+    //Handles what happens when the player win the game
+    public void GameWon()
+    {
+        mineDisplay.SetActive(false);
     }
 }
 

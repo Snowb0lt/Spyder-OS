@@ -1319,7 +1319,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1567443778}
-        m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
         m_MethodName: ToMainGame
         m_Mode: 1
         m_Arguments:

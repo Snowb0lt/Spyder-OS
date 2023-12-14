@@ -123,4 +123,5 @@ public class AISpeech : MonoBehaviour
         //fullText = "";
         //StartCoroutine(ShowText());
     }
+
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering;
 
 public class SweeperManager : MonoBehaviour
@@ -28,6 +29,11 @@ public class SweeperManager : MonoBehaviour
         if (UIManager._instance.timeLeft <= 0)
         {
             GameOver();
+        }
+        //Wins the game instantly (For testing)
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Victory();
         }
     }
     public void CreateGameBoard(int width, int height, int numMines)
@@ -146,6 +152,8 @@ public class SweeperManager : MonoBehaviour
     [Header("GameOver Items")]
     [SerializeField] private List<GameObject> Clear;
 
+
+    [Header("Specimen Loose")]
     [SerializeField] private Animation SpecimenAnim;
     [SerializeField] private GameObject Specimen;
 
@@ -197,22 +205,32 @@ public class SweeperManager : MonoBehaviour
         }
         if (count == 0)
         {
-            Debug.Log("Winner! Move on");
-            foreach (Tile tile in tiles)
-            {
-                tile.active = false;
-                tile.SetFlaggedIfMine();
-                UIManager._instance.mineDisplay.SetActive(false);
-                Congrats();
-            }
-            UIManager._instance.SpecimenContained();
+            Victory();
+            //foreach (Tile tile in tiles)
+            //{
+            //    tile.active = false;
+            //    tile.SetFlaggedIfMine();
+            //    UIManager._instance.mineDisplay.SetActive(false);
+
+            //}
         }
     }
-    [SerializeField] private GameObject congratsDialogue;
-    public void Congrats()
+    [Header("Winning")]
+    [SerializeField] private UnityEvent startCongrats;
+    private void Victory()
     {
-        AISpeech._instance.StartDialogue(congratsDialogue.GetComponent<Dialogue>(), congratsDialogue.GetComponent<DialogueTrigger>());
+        Debug.Log("Winner! Move on");
+        UIManager._instance.SpecimenContained();
+        foreach (Transform tile in gameHolder.transform)
+        {
+            Destroy(tile.gameObject);
+        }
+        UIManager._instance.GameWon();
+        startCongrats.Invoke();
+        
     }
+
+
 
     public void ExpandIfFlagged(Tile tile)
     {
