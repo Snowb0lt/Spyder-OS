@@ -31,10 +31,10 @@ public class SweeperManager : MonoBehaviour
             GameOver();
         }
         //Wins the game instantly (For testing)
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Victory();
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    Victory();
+        //}
     }
     public void CreateGameBoard(int width, int height, int numMines)
     {

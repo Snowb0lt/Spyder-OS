@@ -68,7 +68,7 @@ public class Tile : MonoBehaviour
                 }
 
             }
-            if (Input.GetMouseButton(0) && Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButton(0) && Input.GetMouseButton(1))
             {
                 SweeperManager._instance.ExpandIfFlagged(this);
             }
@@ -84,6 +84,7 @@ public class Tile : MonoBehaviour
                 //Uh Oh
                 spriteRenderer.sprite = mineHitTile;
                 UIManager._instance.SpecimenReleased();
+                SweeperManager._instance.CheckGameWon();
             }
             else
             {
