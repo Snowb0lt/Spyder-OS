@@ -227,7 +227,6 @@ public class SweeperManager : MonoBehaviour
         }
         UIManager._instance.GameWon();
         startCongrats.Invoke();
-        
     }
 
 
@@ -248,6 +247,14 @@ public class SweeperManager : MonoBehaviour
             }
         }
     }
+
+    //public void ResetSpeciesTracker()
+    //{
+    //    if (UIManager._instance.isSpecimenOut)
+    //    {
+    //        UIManager._instance.isSpecimenOut = false;
+    //    }
+    //}
 
     //Run a tutorial for the game
     public void RunTutorial()

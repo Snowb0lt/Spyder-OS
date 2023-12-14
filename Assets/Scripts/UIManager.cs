@@ -65,16 +65,11 @@ public class UIManager : MonoBehaviour
     }
     public void SpecimenContained()
     {
-        if (isSpecimenOut)
-        {
-            isSpecimenOut = false;
-        }
         UIReleaseElements.gameObject.SetActive(false);
-        timeLeft = maxTime;
     }
 
     [Header("Time Management")]
-    [SerializeField]private int maxTime;
+    public int maxTime;
 
     public float timeLeft;
     //Regulates the bar that drains when the specimen is on the way

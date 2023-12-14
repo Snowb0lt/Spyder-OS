@@ -28,5 +28,10 @@ public class CongratsPicker : MonoBehaviour
                 CloseCall.Invoke();
             }
         }
+        if (UIManager._instance.isSpecimenOut)
+        {
+            UIManager._instance.isSpecimenOut = false;
+        }
+        UIManager._instance.timeLeft = UIManager._instance.maxTime;
     }
 }
