@@ -10,13 +10,23 @@ public class MainMenuManager : MonoBehaviour
     public void PowerOn()
     {
         PowerOnSound.Play();
-        Invoke("WakeUpUI", 2);
+        Invoke("ShowCredits", 3);
+        Invoke("HideCredits", 6);
+        Invoke("WakeUpUI", 9);
     }
 
     [Header("UIElements")]
-    [SerializeField] private GameObject UIElements;
+    [SerializeField] private GameObject UIElements, CreditIntro;
     [SerializeField] public AudioSource PCWakeup;
 
+    private void ShowCredits()
+    {
+        CreditIntro.SetActive(true);
+    }
+    private void HideCredits()
+    {
+        CreditIntro.SetActive(false);
+    }
     public void WakeUpUI()
     {
         PCWakeup.Play();
