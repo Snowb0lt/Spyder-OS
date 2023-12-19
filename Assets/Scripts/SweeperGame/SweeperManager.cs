@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -151,7 +152,7 @@ public class SweeperManager : MonoBehaviour
     }
     [Header("GameOver Items")]
     [SerializeField] private List<GameObject> Clear;
-
+    [SerializeField] private GameObject blackScreen;
 
     [Header("Specimen Loose")]
     [SerializeField] private Animation SpecimenAnim;
@@ -166,29 +167,19 @@ public class SweeperManager : MonoBehaviour
             obj.SetActive(false);
         }
         SpecimenHiss.SetActive(true);
-        
-        //Spider...
-        //Movement
-
         Invoke("KillPlayer", 1.5f);
         //Animations
         SpecimenAnim.Play("taunt");
-
-
-        //Spider Screech
-        
-        //DeathSound
-
+        Invoke("CTBGameOver", 2);
     }
     private void KillPlayer()
     {
         Specimen.SetActive(true);
     }
-    [SerializeField] private GameObject blackScreen;
     private void CTBGameOver()
     {
         blackScreen.SetActive(true);
-        Invoke("UIManager._instance.ShowGameOverScreen", 2);
+        UIManager._instance.Invoke("ShowGameOverScreen", 2);
     }
 
     public void CheckGameWon()
@@ -206,13 +197,6 @@ public class SweeperManager : MonoBehaviour
         if (count == 0)
         {
             Victory();
-            //foreach (Tile tile in tiles)
-            //{
-            //    tile.active = false;
-            //    tile.SetFlaggedIfMine();
-            //    UIManager._instance.mineDisplay.SetActive(false);
-
-            //}
         }
     }
     [Header("Winning")]

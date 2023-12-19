@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+
+    private void Start()
+    {
+        AudioSoundTimer = Random.Range(0, 5);
+    }
+
     [SerializeField] private AudioSource Mouseclick;
     void Update()
     {
@@ -33,6 +39,8 @@ public class SoundManager : MonoBehaviour
         {
             int randomNumber = Random.Range(0, AlertSounds.Count);
             AlertSounds[randomNumber].Play();
+            TimeToPlaySound = 0;
+            AudioSoundTimer = Random.Range(0, 5);
         }
     }
     public void StopSpecimenSounds()
