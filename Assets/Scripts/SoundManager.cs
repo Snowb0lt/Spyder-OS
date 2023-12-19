@@ -28,7 +28,7 @@ public class SoundManager : MonoBehaviour
     
     public void SpecimenReleasedSound()
     {
-        AlarmRing.Play();
+        AlarmRing.Play();       
         if (TimeToPlaySound >= AudioSoundTimer)
         {
             int randomNumber = Random.Range(0, AlertSounds.Count);
