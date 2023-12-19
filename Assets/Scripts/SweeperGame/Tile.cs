@@ -36,9 +36,6 @@ public class Tile : MonoBehaviour
     public int mineCount = 0;
 
 
-    [Header("Manager Via Code")]
-    public SweeperManager sweepManager;
-
     private void Awake()
     {
         //This Should exist due to the RequireComponent Helper

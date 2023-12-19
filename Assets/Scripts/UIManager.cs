@@ -51,6 +51,7 @@ public class UIManager : MonoBehaviour
 
     }
     //Shows that the specimen is released AS well as hides it when it is contained
+    public AudioSource FacilityAlarm;
     public void SpecimenReleased()
     {
         if (!isSpecimenOut)
@@ -62,10 +63,15 @@ public class UIManager : MonoBehaviour
             timeLeft -= 3;
         }
         UIReleaseElements.gameObject.SetActive(true);
+        if (FacilityAlarm.isPlaying == false)
+        {
+            FacilityAlarm.Play();
+        }
     }
     public void SpecimenContained()
     {
         UIReleaseElements.gameObject.SetActive(false);
+        FacilityAlarm.Stop();
     }
 
     [Header("Time Management")]
@@ -88,10 +94,12 @@ public class UIManager : MonoBehaviour
 
 
     [SerializeField] private GameObject gameoverScreen;
+    [SerializeField] private AudioSource GameOverAlarm;
     //GameOver Screen
     public void ShowGameOverScreen()
     {
         gameoverScreen.SetActive(true);
+        GameOverAlarm.Play();
     }
 
     //This shows if the specimen is released or not (for What congrats to pick)

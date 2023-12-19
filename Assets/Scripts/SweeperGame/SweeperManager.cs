@@ -11,7 +11,7 @@ public class SweeperManager : MonoBehaviour
     private int width, height;
     public int numMines;
 
-    private List<Tile> tiles = new();
+    [SerializeField]private List<Tile> tiles = new();
 
     private readonly float tileSize = 0.32f;
 
@@ -158,7 +158,7 @@ public class SweeperManager : MonoBehaviour
     [SerializeField] private Animation SpecimenAnim;
     [SerializeField] private GameObject Specimen;
 
-    [SerializeField] private GameObject SpecimenHiss, BackgroundNoise;
+    [SerializeField] private GameObject SpecimenHiss;
     public void GameOver()
     {
         //Screen Goes black
@@ -176,10 +176,16 @@ public class SweeperManager : MonoBehaviour
     {
         Specimen.SetActive(true);
     }
+    [SerializeField] private List<AudioSource> AmbientSounds;
     private void CTBGameOver()
     {
         blackScreen.SetActive(true);
+        UIManager._instance.FacilityAlarm.Stop();
         UIManager._instance.Invoke("ShowGameOverScreen", 2);
+        foreach (AudioSource sound in AmbientSounds)
+        {
+            sound.Stop();
+        }
     }
 
     public void CheckGameWon()
@@ -203,6 +209,7 @@ public class SweeperManager : MonoBehaviour
     [SerializeField] private UnityEvent startCongrats;
     private void Victory()
     {
+        ResetGameState();
         Debug.Log("Winner! Move on");
         UIManager._instance.SpecimenContained();
         foreach (Transform tile in gameHolder.transform)
@@ -211,6 +218,7 @@ public class SweeperManager : MonoBehaviour
         }
         UIManager._instance.GameWon();
         startCongrats.Invoke();
+        tiles.Clear();
     }
 
 
