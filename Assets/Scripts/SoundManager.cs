@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        AudioSoundTimer = Random.Range(0, 15);
+        AudioSoundTimer = Random.Range(0, 10);
     }
 
     [SerializeField] private AudioSource Mouseclick;
@@ -19,33 +19,43 @@ public class SoundManager : MonoBehaviour
         {
             Mouseclick.Play();
         }
-        if (StartAudioTimers)
+        CheckToPlaySound();
+    }
+    //Plays a random ambience during alarms
+    private void CheckToPlaySound()
+    {
+        if (UIManager._instance.isSpecimenOut)
         {
-            AudioSoundTimer++;
+            TimeToPlaySound+= 1 * Time.deltaTime;
+        }
+        if (TimeToPlaySound >= AudioSoundTimer)
+        {
+            int randomNumber = Random.Range(0, AlertSounds.Count);
+            if (!AlertSounds[randomNumber].isPlaying)
+            {
+                AlertSounds[randomNumber].Play();
+            }
+            TimeToPlaySound = 0;
+            AudioSoundTimer = Random.Range(0, 10);
         }
     }
+
     //Ambient Sounds after Specimen Released
     [Header("Release Sounds")]
     [SerializeField] private AudioSource AlarmRing;
     [SerializeField] private List<AudioSource> AlertSounds;
     private int AudioSoundTimer;
-    [SerializeField] private int TimeToPlaySound;
+    [SerializeField] private float TimeToPlaySound;
     private bool StartAudioTimers = false;
     
     public void SpecimenReleasedSound()
     {
-        AlarmRing.Play();       
-        if (TimeToPlaySound >= AudioSoundTimer)
-        {
-            int randomNumber = Random.Range(0, AlertSounds.Count);
-            AlertSounds[randomNumber].Play();
-            TimeToPlaySound = 0;
-            AudioSoundTimer = Random.Range(0, 15);
-        }
+        AlarmRing.Play();    
+        //StartAudioTimers = true;
     }
     public void StopSpecimenSounds()
     {
-        StartAudioTimers = false;
+        //StartAudioTimers = false;
         AudioSoundTimer = 0;
     }
 }
